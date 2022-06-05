@@ -6,23 +6,24 @@
 MFRC522 rfid(SS_PIN, RST_PIN);
 // Init array that will store new NUID
 byte nuidPICC[4];
+
 void setup() {
 Serial.begin(9600);
 SPI.begin(); // Init SPI bus
 rfid.PCD_Init(); // Init MFRC522
 Serial.println(F("Scan RFID NUID..."));
 }
+
 void loop() {
      readRFID();
      delay(200);
 }
-//
-void readRFID()
-{
+
+void readRFID() {
  // Look for new card
  if ( ! rfid.PICC_IsNewCardPresent())
  return;
-   // Verify if the NUID has been readed
+ // Verify if the NUID has been readed
  if (  !rfid.PICC_ReadCardSerial())
  return;
  
@@ -46,9 +47,7 @@ void readRFID()
  // Stop encryption on PCD
  rfid.PCD_StopCrypto1();
 }
-/**
- * Helper routine to dump a byte array as dec values to Serial.
- */
+
 void printDec(byte *buffer, byte bufferSize) {
  for (byte i = 0; i < bufferSize; i++) {
    Serial.print(buffer[i] < 0x10 ? " 0" : " ");
