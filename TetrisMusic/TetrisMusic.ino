@@ -1,7 +1,3 @@
-/**
- * Thème musicale de Tetris en Arduino avec tone()
- */
-
 const byte PIN_BUZZER = 9;
 
 void setup() {
